@@ -1,5 +1,5 @@
 <h1> Drinkster - A Tinder like app for swiping drinks! </h1>
-
+![preview video](/public/drinkster-video-portrait.gif)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
