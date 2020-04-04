@@ -47,18 +47,18 @@ const useStyles = makeStyles({
     paddingTop: '20px',
   },
   textArea: {
-    height: 180,
+    height: 150,
     paddingBottom: 30
   },
   card: {
-    width: 600,
+    width: 550,
     borderRadius: 20,
-    border: 'solid 0.5px #c7c7c7',
+    //border: 'solid 0.5px #c7c7c7',
     boxShadow: "4px 14px 90px -4px rgba(92,96,102,0.16)"
     //height: 600,
   },
   media: {
-    height: 400,
+    height: 350,
   },
   buttonBase: {
     border: 'solid 5px lightgrey',
