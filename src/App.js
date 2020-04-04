@@ -31,8 +31,6 @@ const useStyles = makeStyles({
     display: 'block',
     marginLeft: 'auto',
     marginRight: 'auto',
-    marginTop: '30px',
-    marginBottom: '10px',
     width: '50%'
   },
   container: {
@@ -47,18 +45,19 @@ const useStyles = makeStyles({
     paddingTop: '20px',
   },
   textArea: {
-    height: 150,
-    paddingBottom: 30
+    height: 160,
+    paddingBottom: 20
   },
   card: {
-    width: 550,
+    maxWidth: 550,
+    width: '100%',
     borderRadius: 20,
     //border: 'solid 0.5px #c7c7c7',
-    boxShadow: "4px 14px 90px -4px rgba(92,96,102,0.16)"
+    boxShadow: "4px 14px 50px -4px rgba(92,96,102,0.16)"
     //height: 600,
   },
   media: {
-    height: 350,
+    height: 320,
   },
   buttonBase: {
     border: 'solid 5px lightgrey',
@@ -68,7 +67,7 @@ const useStyles = makeStyles({
   },
   tagLine: {
     display: 'flex',
-    padding: '0px 2px',
+    //padding: '0px 2px',
     marginBottom: '10px',
     justifyContent: 'space-between',
     alignItems: 'baseline',
@@ -108,7 +107,7 @@ const App = () => {
 
 
     <div className={classes.container}>
-      <img className={classes.logo} src={logo} alt="Logo" height='25px'/>
+      <img className={classes.logo} src={logo} alt="Logo" height='20px'/>
       <div className={classes.row}>
           <Card className={classes.card} elevation={2}>
             <CardActionArea className={classes.card}>
@@ -125,14 +124,14 @@ const App = () => {
               {/* This returns the category of the drink. For example: "Punch", "Party" */}
               {data.drinks.map(drink => (
                 <div className={classes.tagLine} key={drink.idDrink}>
-                  <Typography color='textSecondary' variant="overline" display="block" key={drink.strCategory}>
+                  {/*<Typography color='textSecondary' variant="overline" display="block" key={drink.strCategory}>
                     {drink.strCategory}
-                  </Typography>
+                  </Typography>*/}
                   <div>
-                    {drink.strIngredient1 && <Tooltip title={drink.strMeasure1}><Chip style={{marginRight: '3px'}} size="small" label={drink.strIngredient1}/></Tooltip>}
-                    {drink.strIngredient2 && <Tooltip title={drink.strMeasure2}><Chip style={{marginRight: '3px'}} size="small" label={drink.strIngredient2}/></Tooltip>}
-                    {drink.strIngredient3 && <Tooltip title={drink.strMeasure3}><Chip style={{marginRight: '3px'}} size="small" label={drink.strIngredient3}/></Tooltip>}
-                    {drink.strIngredient4 && <Tooltip title={drink.strMeasure4}><Chip style={{marginRight: '3px'}} size="small" label={drink.strIngredient4}/></Tooltip>}
+                    {drink.strIngredient1 && <Tooltip title={drink.strMeasure1}><Chip style={{margin: '1.5px'}} size="small" label={drink.strIngredient1}/></Tooltip>}
+                    {drink.strIngredient2 && <Tooltip title={drink.strMeasure2}><Chip style={{margin: '1.5px'}} size="small" label={drink.strIngredient2}/></Tooltip>}
+                    {drink.strIngredient3 && <Tooltip title={drink.strMeasure3}><Chip style={{margin: '1.5px'}} size="small" label={drink.strIngredient3}/></Tooltip>}
+                    {drink.strIngredient4 && <Tooltip title={drink.strMeasure4}><Chip style={{margin: '1.5px'}} size="small" label={drink.strIngredient4}/></Tooltip>}
                     {/*drink.strIngredient5 && <Chip style={{marginRight: '3px'}} size="small" label={drink.strIngredient5}/>*/}
                   </div>
                 </div>
@@ -148,7 +147,7 @@ const App = () => {
 
               {/* This returns the instructions for the drink */}
               {data.drinks.map(drink => (
-                <Typography style={{overflow:'auto'}} variant="body2" color="textSecondary" component="p" key={drink.strInstructions}>
+                <Typography style={{overflow:'hidden',maxHeight:'80px'}} variant="body2" color="textSecondary" component="p" key={drink.strInstructions}>
                   {drink.strInstructions}
                 </Typography>
               ))}
