@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+
+//import material components
+import Chip from '@material-ui/core/Chip';
 import Card from '@material-ui/core/Card';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
@@ -10,7 +13,7 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
-import './App.css';
+import Tooltip from '@material-ui/core/Tooltip';
 
 import logo from './drinkster-logotype.svg';
 
@@ -44,10 +47,10 @@ const useStyles = makeStyles({
     paddingTop: '20px',
   },
   textArea: {
-    height: 150
+    height: 180
   },
   card: {
-    width: 400,
+    width: 600,
     borderRadius: 20,
     border: 'solid 0.5px #c7c7c7',
     boxShadow: "4px 14px 90px -4px rgba(92,96,102,0.16)"
@@ -61,6 +64,13 @@ const useStyles = makeStyles({
     boxShadow:'unset',
     backgroundColor: 'white',
     marginRight: '-5px'
+  },
+  tagLine: {
+    display: 'flex',
+    padding: '0px 2px',
+    marginBottom: '10px',
+    justifyContent: 'space-between',
+    alignItems: 'baseline',
   },
 
 });
@@ -113,9 +123,19 @@ const App = () => {
             <CardContent className={classes.textArea}>
               {/* This returns the category of the drink. For example: "Punch", "Party" */}
               {data.drinks.map(drink => (
-                <Typography color='textSecondary' variant="overline" display="block" key={drink.strCategory}>
-                  {drink.strCategory}
-                </Typography>
+                <div className={classes.tagLine}>
+                  <Typography color='textSecondary' variant="overline" display="block" key={drink.strCategory}>
+                    {drink.strCategory}
+                  </Typography>
+                  <div>
+                    {drink.strIngredient1 && <Tooltip title={drink.strMeasure1}><Chip style={{marginRight: '3px'}} size="small" label={drink.strIngredient1}/></Tooltip>}
+                    {drink.strIngredient2 && <Tooltip title={drink.strMeasure2}><Chip style={{marginRight: '3px'}} size="small" label={drink.strIngredient2}/></Tooltip>}
+                    {drink.strIngredient3 && <Tooltip title={drink.strMeasure3}><Chip style={{marginRight: '3px'}} size="small" label={drink.strIngredient3}/></Tooltip>}
+                    {drink.strIngredient4 && <Tooltip title={drink.strMeasure4}><Chip style={{marginRight: '3px'}} size="small" label={drink.strIngredient4}/></Tooltip>}
+                    {/*drink.strIngredient5 && <Chip style={{marginRight: '3px'}} size="small" label={drink.strIngredient5}/>*/}
+                  </div>
+                </div>
+
               ))}
 
               {/* This returns the name of the drink. For example: Gin tonic */}
