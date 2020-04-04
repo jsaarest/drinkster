@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-//import material components
+//material ui components
 import Chip from '@material-ui/core/Chip';
 import Card from '@material-ui/core/Card';
 import Button from '@material-ui/core/Button';
@@ -17,10 +17,10 @@ import Tooltip from '@material-ui/core/Tooltip';
 
 import logo from './drinkster-logotype.svg';
 
-
-
+//material ui icons
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ClearIcon from '@material-ui/icons/Clear';
+import RefreshIcon from '@material-ui/icons/Refresh';
 
 
 
@@ -47,7 +47,8 @@ const useStyles = makeStyles({
     paddingTop: '20px',
   },
   textArea: {
-    height: 180
+    height: 180,
+    paddingBottom: 30
   },
   card: {
     width: 600,
@@ -123,7 +124,7 @@ const App = () => {
             <CardContent className={classes.textArea}>
               {/* This returns the category of the drink. For example: "Punch", "Party" */}
               {data.drinks.map(drink => (
-                <div className={classes.tagLine}>
+                <div className={classes.tagLine} key={drink.idDrink}>
                   <Typography color='textSecondary' variant="overline" display="block" key={drink.strCategory}>
                     {drink.strCategory}
                   </Typography>
@@ -147,7 +148,7 @@ const App = () => {
 
               {/* This returns the instructions for the drink */}
               {data.drinks.map(drink => (
-                <Typography variant="body2" color="textSecondary" component="p" key={drink.strInstructions}>
+                <Typography style={{overflow:'auto'}} variant="body2" color="textSecondary" component="p" key={drink.strInstructions}>
                   {drink.strInstructions}
                 </Typography>
               ))}
@@ -159,14 +160,18 @@ const App = () => {
       {/* Buttons for swiping actions */}
       <div className={classes.row}>
 
-        <Fab className={classes.buttonBase} size='large'>
+        {/*<Fab className={classes.buttonBase} size='large'>
           <FavoriteIcon
             style={{fill: '#3de073'}}/>
-        </Fab>
+        </Fab>*/}
 
-        <Fab className={classes.buttonBase} size='large' onClick={fetchData}>
+        {/*<Fab className={classes.buttonBase} size='large' onClick={fetchData}>
           <ClearIcon
             color='secondary'/>
+        </Fab>*/}
+        <Fab className={classes.buttonBase} size='large' onClick={fetchData}>
+          <RefreshIcon
+            style={{fill: '#1994ff'}}/>
         </Fab>
 
       </div>
