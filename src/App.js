@@ -45,19 +45,21 @@ const useStyles = makeStyles({
     paddingTop: '20px',
   },
   textArea: {
-    height: 160,
-    paddingBottom: 20
+    height: 180,
+    paddingBottom: 20,
+    overflowY: 'scroll'
   },
   card: {
     maxWidth: 550,
     width: '100%',
+    height: 520,
     borderRadius: 20,
     //border: 'solid 0.5px #c7c7c7',
     boxShadow: "4px 14px 50px -4px rgba(92,96,102,0.16)"
     //height: 600,
   },
   media: {
-    height: 320,
+    height: 300,
   },
   buttonBase: {
     touchAction: 'none',
@@ -83,6 +85,8 @@ const App = () => {
 
   const [data, setData] = useState({drinks:[]});
 
+  const [fullData, setFullData] = useState(false);
+
   useEffect(() => {
 
     const fetchData = async () => {
@@ -95,8 +99,8 @@ const App = () => {
   }, []);
 
   const fetchData = async () => {
-    const result = await axios.get('https://www.thecocktaildb.com/api/json/v1/1/random.php/')
-
+    const result = await axios.get('https://www.thecocktaildb.com/api/json/v1/1/random.php/');
+    setFullData(false)
     setData(result.data)
   };
 
@@ -109,67 +113,106 @@ const App = () => {
     <div className={classes.container}>
       <img className={classes.logo} src={logo} alt="Logo" height='20px'/>
       <div className={classes.row}>
-          <Card className={classes.card} elevation={2}>
 
-              {data.drinks.map(drink => (
-                <CardMedia
-                  key={drink.strDrinkThumb}
-                  className={classes.media}
-                  image={drink.strDrinkThumb}
-                />
-              ))}
+        {data.drinks.map(drink => (
+          <Card className={classes.card} elevation={2} key={drink.idDrink}>
+
+            <CardMedia
+              key={drink.strDrinkThumb}
+              className={classes.media}
+              image={drink.strDrinkThumb}
+            />
 
             <CardContent className={classes.textArea}>
               {/* This returns the category of the drink. For example: "Punch", "Party" */}
-              {data.drinks.map(drink => (
-                <div className={classes.tagLine} key={drink.idDrink}>
+
+                <div className={classes.tagLine}>
                   {/*<Typography color='textSecondary' variant="overline" display="block" key={drink.strCategory}>
                     {drink.strCategory}
                   </Typography>*/}
+
+                  {!fullData &&
                   <div>
                     {drink.strIngredient1 && <Tooltip title={drink.strMeasure1}><Chip style={{margin: '1.5px'}} size="small" label={drink.strIngredient1}/></Tooltip>}
                     {drink.strIngredient2 && <Tooltip title={drink.strMeasure2}><Chip style={{margin: '1.5px'}} size="small" label={drink.strIngredient2}/></Tooltip>}
                     {drink.strIngredient3 && <Tooltip title={drink.strMeasure3}><Chip style={{margin: '1.5px'}} size="small" label={drink.strIngredient3}/></Tooltip>}
                     {drink.strIngredient4 && <Tooltip title={drink.strMeasure4}><Chip style={{margin: '1.5px'}} size="small" label={drink.strIngredient4}/></Tooltip>}
                     {/*drink.strIngredient5 && <Chip style={{marginRight: '3px'}} size="small" label={drink.strIngredient5}/>*/}
-                  </div>
+                  </div>}
+
                 </div>
 
-              ))}
-
               {/* This returns the name of the drink. For example: Gin tonic */}
-              {data.drinks.map(drink => (
-                <Typography gutterBottom variant="h5" component="h2" key={drink.idDrink}>
+                <Typography gutterBottom variant="h5" component="h2">
                   {drink.strDrink}
                 </Typography>
-              ))}
 
               {/* This returns the instructions for the drink */}
-              {data.drinks.map(drink => (
                 <Typography style={{overflow:'hidden',maxHeight:'80px'}} variant="body2" color="textSecondary" component="p" key={drink.strInstructions}>
                   {drink.strInstructions}
                 </Typography>
-              ))}
+
+              {fullData && //Show full list of data when fullData is true
+                <div style={{margin: '10px 0px',paddingTop: '10px', borderTop:'solid 0.5px lightgrey', display:'flex', justifyContent:'space-between'}}>
+                  <div style={{marginRight: '15px'}}>
+                    {drink.strIngredient1 &&
+                    <Typography variant="body2" key={drink.strIngredient1}>
+                      {drink.strIngredient1}
+                    </Typography>}
+                    <Typography variant="body2" color="textSecondary" key={drink.strMeasure1}>
+                      {drink.strMeasure1}
+                    </Typography>
+                  </div>
+                  <div style={{marginRight: '15px'}}>
+                    {drink.strIngredient2 &&
+                    <Typography variant="body2" key={drink.strIngredient2}>
+                      {drink.strIngredient2}
+                    </Typography>}
+                    <Typography variant="body2" color="textSecondary" key={drink.strMeasure2}>
+                      {drink.strMeasure2}
+                    </Typography>
+                  </div>
+                  <div style={{marginRight: '15px'}}>
+                    {drink.strIngredient3 &&
+                    <Typography variant="body2" key={drink.strIngredient3}>
+                      {drink.strIngredient3}
+                    </Typography>}
+                    <Typography variant="body2" color="textSecondary" key={drink.strMeasure3}>
+                      {drink.strMeasure3}
+                    </Typography>
+                  </div>
+                  <div style={{marginRight: '15px'}}>
+                    {drink.strIngredient4 &&
+                    <Typography variant="body2" key={drink.strIngredient4}>
+                      {drink.strIngredient4}
+                    </Typography>}
+                    <Typography variant="body2" color="textSecondary" key={drink.strMeasure4}>
+                      {drink.strMeasure4}
+                    </Typography>
+                  </div>
+                </div>
+              }
             </CardContent>
       </Card>
+        ))}
       </div>
 
       {/* Buttons for swiping actions */}
       <div className={classes.row}>
 
-        {/*<Fab className={classes.buttonBase} size='large'>
+        <Fab className={classes.buttonBase} size='large' onClick={() => setFullData(true)}>
           <FavoriteIcon
             style={{fill: '#3de073'}}/>
-        </Fab>*/}
+        </Fab>
 
-        {/*<Fab className={classes.buttonBase} size='large' onClick={fetchData}>
+        <Fab className={classes.buttonBase} size='large' onClick={fetchData} >
           <ClearIcon
             color='secondary'/>
-        </Fab>*/}
-        <Fab className={classes.buttonBase} size='large' onClick={fetchData}>
+        </Fab>
+        {/*<Fab className={classes.buttonBase} size='large' onClick={fetchData}>
           <RefreshIcon
             style={{fill: '#1994ff'}}/>
-        </Fab>
+        </Fab>*/}
 
       </div>
 
