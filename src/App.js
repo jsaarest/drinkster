@@ -60,6 +60,7 @@ const useStyles = makeStyles({
     height: 320,
   },
   buttonBase: {
+    touchAction: 'none',
     border: 'solid 5px lightgrey',
     boxShadow:'unset',
     backgroundColor: 'white',
