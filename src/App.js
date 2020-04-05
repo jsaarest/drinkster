@@ -80,7 +80,6 @@ const App = () => {
 
   const classes = useStyles();
 
-
   const [data, setData] = useState({drinks:[]});
 
   useEffect(() => {
@@ -110,7 +109,6 @@ const App = () => {
       <img className={classes.logo} src={logo} alt="Logo" height='20px'/>
       <div className={classes.row}>
           <Card className={classes.card} elevation={2}>
-            <CardActionArea className={classes.card}>
 
               {data.drinks.map(drink => (
                 <CardMedia
@@ -152,7 +150,6 @@ const App = () => {
                 </Typography>
               ))}
             </CardContent>
-        </CardActionArea>
       </Card>
       </div>
 
