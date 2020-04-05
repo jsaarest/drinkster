@@ -126,10 +126,10 @@ const App = () => {
                     {drink.strCategory}
                   </Typography>*/}
                   <div>
-                    {drink.strIngredient1 && <Tooltip disableFocusListener title={drink.strMeasure1}><Chip style={{margin: '1.5px'}} size="small" label={drink.strIngredient1}/></Tooltip>}
-                    {drink.strIngredient2 && <Tooltip disableFocusListener title={drink.strMeasure2}><Chip style={{margin: '1.5px'}} size="small" label={drink.strIngredient2}/></Tooltip>}
-                    {drink.strIngredient3 && <Tooltip disableFocusListener title={drink.strMeasure3}><Chip style={{margin: '1.5px'}} size="small" label={drink.strIngredient3}/></Tooltip>}
-                    {drink.strIngredient4 && <Tooltip disableFocusListener title={drink.strMeasure4}><Chip style={{margin: '1.5px'}} size="small" label={drink.strIngredient4}/></Tooltip>}
+                    {drink.strIngredient1 && <Tooltip title={drink.strMeasure1}><Chip style={{margin: '1.5px'}} size="small" label={drink.strIngredient1}/></Tooltip>}
+                    {drink.strIngredient2 && <Tooltip title={drink.strMeasure2}><Chip style={{margin: '1.5px'}} size="small" label={drink.strIngredient2}/></Tooltip>}
+                    {drink.strIngredient3 && <Tooltip title={drink.strMeasure3}><Chip style={{margin: '1.5px'}} size="small" label={drink.strIngredient3}/></Tooltip>}
+                    {drink.strIngredient4 && <Tooltip title={drink.strMeasure4}><Chip style={{margin: '1.5px'}} size="small" label={drink.strIngredient4}/></Tooltip>}
                     {/*drink.strIngredient5 && <Chip style={{marginRight: '3px'}} size="small" label={drink.strIngredient5}/>*/}
                   </div>
                 </div>
