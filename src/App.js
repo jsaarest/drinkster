@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
+import {useSpring, animated} from 'react-spring'
+
+
 //material ui components
 import Chip from '@material-ui/core/Chip';
 import Card from '@material-ui/core/Card';
@@ -83,6 +86,8 @@ const App = () => {
 
   const classes = useStyles();
 
+  const props = useSpring({opacity: 1, from: {opacity: 0}})
+
   const [data, setData] = useState({drinks:[]});
 
   const [fullData, setFullData] = useState(false);
@@ -100,7 +105,7 @@ const App = () => {
 
   const fetchData = async () => {
     const result = await axios.get('https://www.thecocktaildb.com/api/json/v1/1/random.php/');
-    setFullData(false)
+    setFullData(false);
     setData(result.data)
   };
 
@@ -109,8 +114,7 @@ const App = () => {
 
   return(
 
-
-    <div className={classes.container}>
+    <animated.div className={classes.container} style={props}>
       <img className={classes.logo} src={logo} alt="Logo" height='20px'/>
       <div className={classes.row}>
 
@@ -216,7 +220,7 @@ const App = () => {
 
       </div>
 
-    </div>
+    </animated.div>
 
 
 
