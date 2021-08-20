@@ -1,19 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 
-import {useSpring, animated} from 'react-spring'
+import {animated, useSpring} from 'react-spring'
 
 
 //material ui components
 import Chip from '@material-ui/core/Chip';
 import Card from '@material-ui/core/Card';
-import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import { Fab } from '@material-ui/core';
+import {Fab} from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
+import {makeStyles} from '@material-ui/core/styles';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Tooltip from '@material-ui/core/Tooltip';
@@ -23,13 +19,13 @@ import logo from './drinkster-logotype.svg';
 //material ui icons
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ClearIcon from '@material-ui/icons/Clear';
-import RefreshIcon from '@material-ui/icons/Refresh';
-
-
+import TinderCard from "react-tinder-card";
 
 
 const useStyles = makeStyles({
-
+  swipe: {
+    //position: 'absolute'
+  },
   logo: {
     display: 'block',
     marginLeft: 'auto',
@@ -38,6 +34,10 @@ const useStyles = makeStyles({
   },
   container: {
     margin: '10px',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   row: {
     display: 'flex',
@@ -88,37 +88,62 @@ const App = () => {
 
   const props = useSpring({opacity: 1, from: {opacity: 0}})
 
-  const [data, setData] = useState({drinks:[]});
+  const [data, setData] = useState([]);
 
   const [fullData, setFullData] = useState(false);
 
   useEffect(() => {
 
     const fetchData = async () => {
-      const result = await axios(
+      return await axios(
         'https://www.thecocktaildb.com/api/json/v1/1/random.php/',
-      );
-      setData(result.data);
+      )
     };
-    fetchData();
+    fetchData().then(res => setData(res.data.drinks));
   }, []);
 
   const fetchData = async () => {
-    const result = await axios.get('https://www.thecocktaildb.com/api/json/v1/1/random.php/');
-    setFullData(false);
-    setData(result.data)
+    return await axios.get('https://www.thecocktaildb.com/api/json/v1/1/random.php/')
   };
+  const ref = React.createRef()
 
-  //console.log('drinks', data.drinks[0]);
-//console.log("data", parsedData);
+  const swipe = (direction) => {
+    if(direction === "left") {
+      ref.current.swipe(direction)
+      return fetchData().then(res => {
+        setData(res.data.drinks)
+        setFullData(false)
+      })
+    };
+    if(direction === "right") {
+      return setFullData(true)
+    }
+  }
+
+  const onSwipe = (direction) => {
+    if(direction === "left") {
+      return fetchData().then(res => {
+        setFullData(false)
+        setData(res.data.drinks)
+      })
+    };
+    if(direction === "right") {
+      console.log(data)
+      return setFullData(true)
+    }
+  }
+  console.log("This is data:",data)
+
+  const drink = data[0];
+
 
   return(
 
-    <animated.div className={classes.container} style={props}>
+    <div className={classes.container}>
       <img className={classes.logo} src={logo} alt="Logo" height='20px'/>
       <div className={classes.row}>
 
-        {data.drinks.map(drink => (
+        {data.length > 0 ? <TinderCard style={props} ref={ref} className={classes.swipe} key={drink.idDrink} onSwipe={(dir) => onSwipe(dir)}>
           <Card className={classes.card} elevation={2} key={drink.idDrink}>
 
             <CardMedia
@@ -198,18 +223,19 @@ const App = () => {
               }
             </CardContent>
       </Card>
-        ))}
+          </TinderCard>
+         : 'Loading...'}
       </div>
 
       {/* Buttons for swiping actions */}
       <div className={classes.row}>
 
-        <Fab className={classes.buttonBase} size='large' onClick={() => setFullData(true)}>
+        <Fab className={classes.buttonBase} size='large' onClick={() => swipe('right')}>
           <FavoriteIcon
             style={{fill: '#3de073'}}/>
         </Fab>
 
-        <Fab className={classes.buttonBase} size='large' onClick={fetchData} >
+        <Fab className={classes.buttonBase} size='large' onClick={() => swipe('left')} >
           <ClearIcon
             color='secondary'/>
         </Fab>
@@ -220,7 +246,8 @@ const App = () => {
 
       </div>
 
-    </animated.div>
+    </div>
+
 
 
 
