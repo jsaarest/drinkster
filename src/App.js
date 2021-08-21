@@ -83,17 +83,12 @@ const useStyles = makeStyles({
 
 
 const App = () => {
-
   const classes = useStyles();
-
   const props = useSpring({opacity: 1, from: {opacity: 0}})
-
   const [data, setData] = useState([]);
-
   const [fullData, setFullData] = useState(false);
 
   useEffect(() => {
-
     const fetchData = async () => {
       return await axios(
         'https://www.thecocktaildb.com/api/json/v1/1/random.php/',
@@ -119,7 +114,6 @@ const App = () => {
       return setFullData(true)
     }
   }
-
   const onSwipe = (direction) => {
     if(direction === "left") {
       return fetchData().then(res => {
@@ -132,18 +126,14 @@ const App = () => {
       return setFullData(true)
     }
   }
-  console.log("This is data:",data)
-
   const drink = data[0];
-
-
   return(
 
     <div className={classes.container}>
       <img className={classes.logo} src={logo} alt="Logo" height='20px'/>
       <div className={classes.row}>
 
-        {data.length > 0 ? <TinderCard style={props} ref={ref} className={classes.swipe} key={drink.idDrink} onSwipe={(dir) => onSwipe(dir)}>
+        {data.length > 0 ? <TinderCard flickOnSwipe={false} style={props} ref={ref} className={classes.swipe} key={drink.idDrink} onSwipe={(dir) => onSwipe(dir)}>
           <Card className={classes.card} elevation={2} key={drink.idDrink}>
 
             <CardMedia
