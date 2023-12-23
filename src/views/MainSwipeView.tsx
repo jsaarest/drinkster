@@ -92,8 +92,8 @@ const MainSwipeView = () => {
   return (
     <>
       <div className='container'>
-      
-          {(drinksList && drinksList.length > 0 && !isLoading) ?
+        <div className="card-container">
+        {(drinksList && drinksList.length > 0 && !isLoading) ?
             drinksList.map((drink: Cocktail, index: number) => {
               return <TinderCard
                 ref={childRefs[index]}
@@ -110,7 +110,7 @@ const MainSwipeView = () => {
                   />
                   <div className="text-area">
                     <div className="tag-line">
-                      {!fullData && <IngredientsList ingredients={[drink.strIngredient1, drink.strIngredient2, drink.strIngredient3, drink.strIngredient4]} />}
+                      {fullData && <IngredientsList ingredients={[drink.strIngredient1, drink.strIngredient2, drink.strIngredient3, drink.strIngredient4]} />}
                     </div>
 
                     <h2>{drink.strDrink}</h2>
@@ -127,6 +127,9 @@ const MainSwipeView = () => {
             })
 
             : null}
+        </div>
+      
+         
      
 
 
