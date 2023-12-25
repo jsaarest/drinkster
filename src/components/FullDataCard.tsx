@@ -16,7 +16,7 @@ const FullDataCard = ({ drink, className }: FullDataCardProps) => {
   return (
     <div className={className}>
       <ul>
-        {ingredients.map((ingredient, index) => {
+        {ingredients.filter(item => item.label).map((ingredient, index) => {
           return <li key={index}>{ingredient.label} - {ingredient.value}</li>
         })}
       </ul>

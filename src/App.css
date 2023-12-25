@@ -23,12 +23,21 @@
   justify-content: center;
 }
 
+
+
 .horizontal-container {
   display: flex;
+  width: 100%;
   flex-direction: row;
   justify-content: center;
   text-align: center;
   align-items: center;
+}
+
+.align-left {
+  align-items: center;
+  text-align: left;
+  justify-content: flex-start;
 }
 
 .card-container {

@@ -44,8 +44,8 @@ const CardFlippedContent = ({ drink }: { drink: Cocktail }) => (
       textAlign: "left"
     }}>
 
-    <div className="horizontal-container" style={{ width: "100%", justifyContent: "space-between", paddingBottom: "0.5rem"}}>
-      <h1>{drink.strDrink}</h1>
+    <div className="horizontal-container align-left" style={{ justifyContent: "space-between" }}>
+      <h2>{drink.strDrink}</h2>
       <Chip label={drink.strCategory} />
       </div>
 
