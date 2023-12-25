@@ -17,58 +17,6 @@
   --accent-color: rgba(0, 0, 0, 0.9)
 }
 
-.modal-container {
-  z-index: 9;
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
-  justify-content: center;
-  align-items: center;
-  
-}
-
-.modal-content {
-  gap: 1rem;
-  display: flex;
-  flex-direction: column;
-  left: 50%;
-  border-radius: var(--border-radius);
-  max-width: calc(var(--viewport-width, 90vw) - 50px);
-  opacity: 0;
-  transition: opacity 1s ease-in-out;
-}
-
-.modal-container.show {
-  display: flex;
-}
-
-.modal-container.show .modal-content {
-  opacity: 1;
-}
-
-.close-button {
-  cursor: pointer;
-  background-color: var(--background-color);
-  border-radius: 50%;
-  height: 50px;
-  width: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  svg {
-    fill: var(--accent-color);
-    stroke: var(--accent-color);
-    stroke-width: 2px;
-    height: 28px;
-    width: 28px;
-    
-  }
-}
-
 .vertical-container {
   display: flex;
   flex-direction: column;
@@ -103,8 +51,10 @@
   position: absolute;
   cursor: pointer;
   width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
+  border-radius: var(--border-radius);
 
 }
 
@@ -113,9 +63,7 @@
 }
 
 .shadow {
-  -webkit-box-shadow: 0px 10px 42px -4px rgba(223, 224, 230, 1);
-  -moz-box-shadow: 0px 10px 42px -4px rgba(223, 224, 230, 1);
-  box-shadow: 0px 10px 42px -4px rgba(223, 224, 230, 1);
+  box-shadow: 0px 10px 42px -4px rgba(46, 46, 46, 0.25);
 }
 
 .swipe-rotate-left {
@@ -129,11 +77,17 @@
 .card {
   position: relative;
   width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  flex: 1 1 500px;
   border-radius: var(--border-radius);
   background-color: var(--background-color);
+}
+
+.card-placeholder {
+  background: white;
+  border-radius: var(--border-radius);
+  
 }
 
 .row {
@@ -154,13 +108,12 @@
 }
 
 .chip {
-  display: flex;
-  flex-direction: row;
+  display: inline-block;
   justify-content: center;
   align-items: center;
   padding: 0.25rem 1rem;
   border-radius: 50px;
-  background-color: #f1f4f7;
+  background: linear-gradient(98deg, #367966 9.99%, #058F71 94.61%);
 }
 
 .chip-label {
@@ -168,7 +121,7 @@
   text-wrap: nowrap;
   font-weight: 500;
   margin: 0;
-  color: #444444;
+  color: white;
 }
 
 .text-area {
@@ -233,8 +186,7 @@
 
 .button-row {
   display: flex;
-  position: absolute;
-  bottom: 1rem;
+  margin-top: 1rem;
   gap: 1rem;
   width: 100%;
   align-items: center;

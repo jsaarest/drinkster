@@ -42,5 +42,5 @@ export type Cocktail = {
 
 }
 
-export type SwipeType = "like" | "nope" | "superlike";
+export type SwipeType = "like" | "nope";
 export type HistoryType = Cocktail & { swipe: SwipeType }

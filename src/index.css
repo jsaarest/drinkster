@@ -21,15 +21,6 @@
   padding: 1rem;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
 body {
   margin: 0;
   display: flex;
@@ -38,8 +29,17 @@ body {
 }
 
 h1 {
-  font-size: 3.2em;
+  font-size: 2em;
   line-height: 1.1;
+}
+
+h2 {
+  margin: 0.5rem 0;
+  line-height: 1.2;
+}
+
+li {
+  font-size: 1.2em;
 }
 
 p {
@@ -48,29 +48,19 @@ p {
   font-size: 1em;
 }
 
-.overline {
-  font-size: 14px;
-  letter-spacing: 5%;
-  font-weight: 500;
-  text-transform: uppercase;
-}
-
-h2 {
-  margin: 0.5rem 0;
-  line-height: 1.2;
-}
-
 button {
-  border-radius: 8px;
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
   cursor: pointer;
   transition: box-shadow 0.25s;
 }
+button:active {
+  cursor: grabbing;
+}
+
 button:hover {
   box-shadow: 0px 6px 16px 3px rgba(52, 54, 64, 0.25);
 }

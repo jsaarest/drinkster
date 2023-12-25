@@ -1,46 +1,29 @@
 import { Cocktail } from "../types"
 
-const FullDataCard = (drink: Cocktail) => {
-    return(
-        <div style={{margin: '10px 0px',paddingTop: '10px', borderTop:'solid 0.5px lightgrey', display:'flex', justifyContent:'space-between'}}>
-                  <div style={{marginRight: '15px'}}>
-                    {drink.strIngredient1 &&
-                    <p>
-                      {drink.strIngredient1}
-                    </p>}
-                    <p>
-                      {drink.strMeasure1}
-                    </p>
-                  </div>
-                  <div style={{marginRight: '15px'}}>
-                    {drink.strIngredient2 &&
-                    <p>
-                      {drink.strIngredient2}
-                    </p>}
-                    <p>
-                      {drink.strMeasure2}
-                    </p>
-                  </div>
-                  <div style={{marginRight: '15px'}}>
-                    {drink.strIngredient3 &&
-                    <p>
-                      {drink.strIngredient3}
-                    </p>}
-                    <p>
-                      {drink.strMeasure3}
-                    </p>
-                  </div>
-                  <div style={{marginRight: '15px'}}>
-                    {drink.strIngredient4 &&
-                    <p>
-                      {drink.strIngredient4}
-                    </p>}
-                    <p>
-                      {drink.strMeasure4}
-                    </p>
-                  </div>
-                </div>
-    )
+type FullDataCardProps = {
+  drink: Cocktail;
+  className?: string;
+}
+const FullDataCard = ({ drink, className }: FullDataCardProps) => {
+
+  const ingredients = [
+    {label: drink?.strIngredient1, value: drink?.strMeasure1},
+    {label: drink?.strIngredient2, value: drink?.strMeasure2},
+    {label: drink?.strIngredient3, value: drink?.strMeasure3},
+    {label: drink?.strIngredient4, value: drink?.strMeasure4},
+    {label: drink?.strIngredient5, value: drink?.strMeasure5},
+  ]
+  return (
+    <div className={className}>
+      <ul>
+        {ingredients.map((ingredient, index) => {
+          return <li key={index}>{ingredient.label} - {ingredient.value}</li>
+        })}
+      </ul>
+      
+    </div>
+
+  )
 }
 
 export default FullDataCard
