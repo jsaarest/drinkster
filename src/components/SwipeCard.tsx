@@ -22,7 +22,7 @@ const CardContent = ({ drink }: { drink: Cocktail }) => (
     <div className="text-area">
       <div className="horizontal-container" style={{ justifyContent: "space-between", paddingBottom: "0.5rem" }}>
         <h2>{drink.strDrink}</h2>
-        <Chip label={drink.strGlass} />
+        <Chip label={drink.strCategory} />
       </div>
       <div className="scrollable-text">
         <p>
@@ -46,7 +46,7 @@ const CardFlippedContent = ({ drink }: { drink: Cocktail }) => (
 
     <div className="horizontal-container" style={{ width: "100%", justifyContent: "space-between", paddingBottom: "0.5rem"}}>
       <h1>{drink.strDrink}</h1>
-      <Chip label={drink.strGlass} />
+      <Chip label={drink.strCategory} />
       </div>
 
       <FullDataCard drink={drink} />
