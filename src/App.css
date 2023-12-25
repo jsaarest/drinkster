@@ -29,15 +29,9 @@
   display: flex;
   width: 100%;
   flex-direction: row;
-  justify-content: center;
-  text-align: center;
-  align-items: center;
-}
-
-.align-left {
-  align-items: center;
+  justify-content: space-between;
   text-align: left;
-  justify-content: flex-start;
+  align-items: center;
 }
 
 .card-container {
@@ -117,7 +111,7 @@
 }
 
 .chip {
-  display: inline-block;
+  display: inline-flex;
   justify-content: center;
   align-items: center;
   padding: 0.25rem 1rem;
