@@ -42,4 +42,5 @@ export type Cocktail = {
 
 }
 
-export type TinderSwipeCardDirections = 'left' | 'right' | 'up' | 'down';
+export type SwipeType = "like" | "nope" | "superlike";
+export type HistoryType = Cocktail & { swipe: SwipeType }
