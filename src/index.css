@@ -34,8 +34,7 @@ body {
   margin: 0;
   display: flex;
   place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  overflow: hidden;
 }
 
 h1 {
@@ -45,6 +44,15 @@ h1 {
 
 p {
   margin: 0rem 0;
+  color:rgb(126, 126, 126);
+  font-size: 1em;
+}
+
+.overline {
+  font-size: 14px;
+  letter-spacing: 5%;
+  font-weight: 500;
+  text-transform: uppercase;
 }
 
 h2 {
